@@ -1,0 +1,5 @@
+[vagrant-mariaDB]
+
+master ansible_ssh_host=192.168.121.238 ansible_ssh_private_key_file=./.vagrant/machines/master/libvirt/private_key
+slave-01 ansible_ssh_host=192.168.121.153 ansible_ssh_private_key_file=./.vagrant/machines/slave-01/libvirt/private_key
+slave-02 ansible_ssh_host=192.168.121.154 ansible_ssh_private_key_file=./.vagrant/machines/slave-02/libvirt/private_key
