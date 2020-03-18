@@ -1,0 +1,6 @@
+---
+- hosts: vagrant_mariaDB
+  become: yes
+  roles:
+  - mariadb_install
+    
