@@ -40,6 +40,10 @@
   apt: "name={{ item }} state=present"
   with_items:
     - mariadb-server
+    - mariadb-client
+
+- name: Adds Python MySQL support on Debian/Ubuntu
+  apt: name=python-mysqldb state=present
 
 - name: Stop MariaDB on debian, if running
   systemd:

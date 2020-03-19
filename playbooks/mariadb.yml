@@ -1,6 +1,7 @@
 ---
-- hosts: vagrant_mariaDB
+- hosts: mariadb_cluster
   become: yes
   roles:
   - mariadb_install
+  # - secure_installation
     

@@ -6,12 +6,11 @@ ENV['VAGRANT_DEFAULT_PROVIDER'] = 'libvirt'
 
 Vagrant.configure("2") do |config|
 
-  ##### DEFINE VM #####
   config.vm.define "master" do |master|
     master.vm.hostname = "master"
     master.vm.box = "debian/stretch64"
     master.vm.box_check_update = false
-    # master.vm.network :private_network, ip: "10.0.0.10"
+    master.vm.network :private_network, ip: "192.168.121.235"
     master.vm.provider :libvirt do |v|
       v.memory = 2048
       end
@@ -21,7 +20,7 @@ Vagrant.configure("2") do |config|
     slave.vm.hostname = "slave-01"
     slave.vm.box = "debian/stretch64"
     slave.vm.box_check_update = false
-    # slave.vm.network :private_network, ip: "10.0.0.11"
+    slave.vm.network :private_network, ip: "192.168.121.153"
     slave.vm.provider :libvirt do |v|
       v.memory = 2048
       end
@@ -31,7 +30,7 @@ Vagrant.configure("2") do |config|
     slave.vm.hostname = "slave-02"
     slave.vm.box = "debian/stretch64"
     slave.vm.box_check_update = false
-    # slave.vm.network :private_network, ip: "10.0.0.12"
+    slave.vm.network :private_network, ip: "192.168.121.154"
     slave.vm.provider :libvirt do |v|
       v.memory = 2048
       end
