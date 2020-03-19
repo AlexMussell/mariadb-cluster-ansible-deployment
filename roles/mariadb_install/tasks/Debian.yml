@@ -19,10 +19,15 @@
     test_command: uptime
   when: reboot_required_file.stat.exists
 
+- name: Install dirmngr for network operations
+  apt: "name={{ item }} state=present"
+  with_items:
+    - dirmngr
+
 - name: Add MariaDB apt key by id from a keyserver
   apt_key:
-    keyserver: hkp://keyserver.ubuntu.com:80
-    id: 177F4010FE56CA3336300305F1656F24C74CD1D8
+    keyserver: keyserver.ubuntu.com
+    id: "{{ mariadb_key }}"
 
 - apt_repository:
     repo: "deb [arch=amd64,arm64,ppc64el] http://ftp.utexas.edu/mariadb/repo/{{ mariadb_version }}/ubuntu bionic main'"
