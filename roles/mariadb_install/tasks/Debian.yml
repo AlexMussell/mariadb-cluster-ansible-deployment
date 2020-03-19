@@ -42,10 +42,12 @@
     - mariadb-server
     - mariadb-client
 
-- name: Adds Python MySQL support on Debian/Ubuntu
-  apt: name=python-mysqldb state=present
+- name: Install Python3 package manager for PyMySQL
+  apt: name=python3-pip state=present
 
-- name: Stop MariaDB on debian, if running
-  systemd:
-    name: mariadb
-    state: stopped
+- name: Install the Python package required for ansible MySQL
+  pip: name=pymysql
+
+- debug: msg="trigger mariadb start"
+  notify: start mariadb
+  changed_when: true

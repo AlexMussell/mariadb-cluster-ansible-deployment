@@ -3,5 +3,4 @@
   become: yes
   roles:
   - mariadb_install
-  # - secure_installation
     

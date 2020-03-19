@@ -3,6 +3,6 @@ ansible_ssh_user=vagrant
 ansible_python_interpreter='/usr/bin/env python3'
 
 [mariadb_cluster]
-master-01 ansible_ssh_host=192.168.121.235 ansible_ssh_private_key_file=./.vagrant/machines/master/libvirt/private_key
-slave-01 ansible_ssh_host=192.168.121.153 ansible_ssh_private_key_file=./.vagrant/machines/slave-01/libvirt/private_key
-slave-02 ansible_ssh_host=192.168.121.154 ansible_ssh_private_key_file=./.vagrant/machines/slave-02/libvirt/private_key
+node-01 ansible_ssh_host=192.168.121.235 ansible_ssh_private_key_file=./.vagrant/machines/node-01/libvirt/private_key
+node-02 ansible_ssh_host=192.168.121.153 ansible_ssh_private_key_file=./.vagrant/machines/node-02/libvirt/private_key
+node-03 ansible_ssh_host=192.168.121.154 ansible_ssh_private_key_file=./.vagrant/machines/node-03/libvirt/private_key

@@ -1,0 +1,16 @@
+
+[client] 
+user={{ mysql_root_username }}
+password={{ mysql_root_password }}
+socket={{ mysql_socket }}
+
+#[galera]
+#wsrep_on=ON
+#wsrep_provider=/usr/lib/galera/libgalera_smm.so
+#wsrep_cluster_address=gcomm://{{ cluster_ips }}
+#binlog_format=row
+#default_storage_engine=InnoDB
+#innodb_autoinc_lock_mode=2
+#bind-address=0.0.0.0
+#wsrep_cluster_name="galera_cluster"
+#wsrep_node_address="db1"
