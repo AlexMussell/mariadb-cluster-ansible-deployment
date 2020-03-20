@@ -1,7 +1,5 @@
 ---
 - name: Copy file with owner and permissions
-  run_once: true
-  delegate_to: mariadb_cluster
   copy:
     src: mariadb.cnf.j2
     dest: /etc/mysql/mariadb.cnf
