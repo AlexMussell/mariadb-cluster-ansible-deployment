@@ -30,7 +30,7 @@
     id: "{{ mariadb_key }}"
 
 - apt_repository:
-    repo: "deb [arch=amd64,arm64,ppc64el] http://ftp.utexas.edu/mariadb/repo/{{ mariadb_version }}/ubuntu bionic main'"
+    repo: 'deb [arch=amd64,i386,ppc64el] http://mirror.zol.co.zw/mariadb/repo/{{ mariadb_version }}/debian stretch main'
     state: present
 
 - name: Update cache to register MariaDB repo
@@ -40,7 +40,6 @@
   apt: "name={{ item }} state=present"
   with_items:
     - mariadb-server
-    - mariadb-client
 
 - name: Install Python3 package manager for PyMySQL
   apt: name=python3-pip state=present
