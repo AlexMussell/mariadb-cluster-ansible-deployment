@@ -1,19 +1,17 @@
 # {{ ansible_managed }}
 
-{% for section_name, section_contents in mariadb_config.items() %}
-[{{ section_name }}]
-{% for key, value in section_contents.items() %}
-{% if value is defined and value %}
-{{ key }}={{ value }}
-{% else %}
-{{ key }}
-{% endif %}
-{% endfor %}
-{% endfor %}
-
+[mariadb]
+wsrep_provider=/usr/lib64/galera/libgalera_smm.so
+wsrep_cluster_address = "gcomm://{{ groups['mariadb_cluster'] | map('extract', hostvars, [inventory_hostname,'ansible_default_ipv4','address']) | list | join(',') }}"
+wsrep_cluster_name={{ galera_wsrep_cluster_name }}
+wsrep_node_name={{ ansible_hostname }}
+wsrep_node_address={{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}
+binlog_format=row
+default_storage_engine=InnoDB
+innodb_autoinc_lock_mode=2
 
 # EXAMPLE OUTPUT
-# [mariadb_config]
+# [mariadb]
 # wsrep_on=ON
 # wsrep_provider=/usr/lib/galera/libgalera_smm.so
 # wsrep_cluster_address=gcomm://192.168.121.235,192.168.121.153,192.168.121.154
