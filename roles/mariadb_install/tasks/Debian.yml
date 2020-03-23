@@ -49,5 +49,5 @@
   pip: name=pymysql
 
 - debug: msg="trigger mariadb start"
-  notify: stop mariadb
+  notify: start mariadb
   changed_when: true

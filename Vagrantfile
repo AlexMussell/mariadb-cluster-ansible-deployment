@@ -11,6 +11,8 @@ Vagrant.configure("2") do |config|
     master.vm.box = "debian/stretch64"
     master.vm.box_check_update = false
     master.vm.network :private_network, ip: "192.168.121.235"
+    config.vm.network "forwarded_port", guest: 3306, host: 3306,
+      auto_correct: true
     master.vm.provider :libvirt do |v|
       v.memory = 2048
       end
@@ -21,6 +23,8 @@ Vagrant.configure("2") do |config|
     slave.vm.box = "debian/stretch64"
     slave.vm.box_check_update = false
     slave.vm.network :private_network, ip: "192.168.121.153"
+    config.vm.network "forwarded_port", guest: 3306, host: 3306,
+      auto_correct: true
     slave.vm.provider :libvirt do |v|
       v.memory = 2048
       end
@@ -31,6 +35,8 @@ Vagrant.configure("2") do |config|
     slave.vm.box = "debian/stretch64"
     slave.vm.box_check_update = false
     slave.vm.network :private_network, ip: "192.168.121.154"
+    config.vm.network "forwarded_port", guest: 3306, host: 3306,
+      auto_correct: true
     slave.vm.provider :libvirt do |v|
       v.memory = 2048
       end

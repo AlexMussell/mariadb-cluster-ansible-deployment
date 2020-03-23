@@ -1,4 +1,4 @@
-- name: stop mariadb
+- name: start mariadb
   service:
     name: mariadb
-    state: stopped
+    state: started

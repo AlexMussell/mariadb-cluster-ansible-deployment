@@ -1,22 +1,19 @@
 ---
-- name: Start the other MariaDB Galera cluster nodes
-  service: name=mariadb state=stopped
+
+# - name: Stop the other MariaDB Galera cluster nodes
+#   service: name=mariadb state=stopped
+#   when: inventory_hostname == groups['mariadb_cluster'][0]
 
 - name: Copy config to all nodes
   template:
     src: mariadb.cnf.j2
     dest: /etc/mysql/mariadb.cnf
 
-- name: Start Galera cluster
-  run_once: true
-  delegate_to: node-01
-  shell: >
-    galera_new_cluster
+# - name: Start Galera cluster
+#   shell: >
+#     galera_new_cluster
+#   when: inventory_hostname == groups['mariadb_cluster'][0]
 
-- name: Start the other MariaDB Galera cluster nodes
-  service: name=mariadb state=started
-  when: inventory_hostname == groups['mariadb_cluster'][0]
-
-- name: Start the other MariaDB Galera cluster nodes
-  service: name=mariadb state=started
-  when: inventory_hostname != groups['mariadb_cluster'][0]
+# # - name: Start the other MariaDB Galera cluster nodes
+# #   service: name=mariadb state=started
+# #   when: inventory_hostname != groups['mariadb_cluster'][0]
