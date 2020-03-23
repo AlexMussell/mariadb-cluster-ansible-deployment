@@ -4,10 +4,6 @@
 #   roles:
 #   - mariadb_install
 
-- hosts: all
-  tasks:
-    - debug: var=
-
 - hosts: mariadb_cluster
   become: yes
   gather_facts: True

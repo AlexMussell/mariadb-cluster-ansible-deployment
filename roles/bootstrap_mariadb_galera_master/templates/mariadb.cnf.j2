@@ -2,7 +2,7 @@
 
 [mariadb]
 wsrep_provider=/usr/lib64/galera/libgalera_smm.so
-wsrep_cluster_address = "gcomm://{{ groups['mariadb_cluster'] | map('extract', hostvars, [inventory_hostname,'ansible_default_ipv4','address']) | list | join(',') }}"
+wsrep_cluster_address = "gcomm://{{ groups['mariadb_cluster'] | map('extract', hostvars, ['ansible_host']) | list | join(',') }}"
 wsrep_cluster_name={{ galera_wsrep_cluster_name }}
 wsrep_node_name={{ ansible_hostname }}
 wsrep_node_address={{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}

@@ -1,1 +1,2 @@
 ---
+galera_wsrep_cluster_name: test-cluster
