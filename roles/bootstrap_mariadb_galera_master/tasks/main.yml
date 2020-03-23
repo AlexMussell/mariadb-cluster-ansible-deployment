@@ -1,4 +1,7 @@
 ---
+- name: Start the other MariaDB Galera cluster nodes
+  service: name=mariadb state=stopped
+
 - name: Copy config to all nodes
   template:
     src: mariadb.cnf.j2
@@ -10,6 +13,10 @@
   shell: >
     galera_new_cluster
 
-- name: Restart the other MariaDB Galera cluster nodes
-  service: name=mariadb state=restarted
+- name: Start the other MariaDB Galera cluster nodes
+  service: name=mariadb state=started
+  when: inventory_hostname == groups['mariadb_cluster'][0]
+
+- name: Start the other MariaDB Galera cluster nodes
+  service: name=mariadb state=started
   when: inventory_hostname != groups['mariadb_cluster'][0]

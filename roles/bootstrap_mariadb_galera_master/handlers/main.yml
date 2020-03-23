@@ -3,4 +3,14 @@
   service:
     name: mariadb
     state: restarted
+
+- name: stop mariadb
+  service:
+    name: mariadb
+    state: stopped
+  
+- name: start mariadb
+  service:
+    name: mariadb
+    state: started
   
