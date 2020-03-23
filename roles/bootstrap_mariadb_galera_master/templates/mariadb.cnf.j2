@@ -1,21 +1,19 @@
-# MariaDB Custom server configuration
-#
 # {{ ansible_managed }}
 
-{% for section_name, section_contents in galera_config.items() %}
-    [{{ section_name }}]
-        {% for key, value in section_contents.items() %}
-            {% if value is defined and value %}
-                {{ key }}={{ value }}
-            {% else %}
-                {{ key }}
-            {% endif %}
-        {% endfor %}
+{% for section_name, section_contents in mariadb_config.items() %}
+[{{ section_name }}]
+{% for key, value in section_contents.items() %}
+{% if value is defined and value %}
+{{ key }}={{ value }}
+{% else %}
+{{ key }}
+{% endif %}
+{% endfor %}
 {% endfor %}
 
 
 # EXAMPLE OUTPUT
-# [galera]
+# [mariadb_config]
 # wsrep_on=ON
 # wsrep_provider=/usr/lib/galera/libgalera_smm.so
 # wsrep_cluster_address=gcomm://192.168.121.235,192.168.121.153,192.168.121.154

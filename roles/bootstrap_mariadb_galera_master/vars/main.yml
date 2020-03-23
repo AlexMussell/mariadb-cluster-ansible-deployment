@@ -1,8 +1,6 @@
 ---
-cluster_ips: 192.168.121.235,192.168.121.153,192.168.121.154
-node_one: 192.168.121.235
 mariadb_config:
-    galera:
+    mariadb:
         wsrep_on: ON
         wsrep_provider: /usr/lib/galera/libgalera_smm.so
         wsrep_cluster_address: gcomm://192.168.121.235,192.168.121.153,192.168.121.154

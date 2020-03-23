@@ -1,15 +1,11 @@
 ---
 - name: Copy file with owner and permissions
-  copy:
+  template:
     src: mariadb.cnf.j2
     dest: /etc/mysql/mariadb.cnf
-    owner: root
-    group: root
-    mode: '0644'
 
 - name: Start Galera cluster
   run_once: true
-  delegate_to: mariadb_cluster
+  delegate_to: node-01
   shell: >
     galera_new_cluster
-  notify: restart mariadb
