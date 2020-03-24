@@ -1,0 +1,4 @@
+---
+conf_pid_file: /run/mysqld/mysqld.pid
+conf_socket_file: /run/mysqld/mysqld.sock
+conf_wsrep_provider: /usr/lib/galera/libgalera_smm.so

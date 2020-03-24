@@ -1,18 +1,6 @@
 ---
-- name: Copy config to all nodes
-  template:
-    src: 50-server.cnf.j2
-    dest: /etc/mysql/mariadb.conf.d/50-server.cnf
+- name: include distribution specific vars
+  include_vars: "{{ ansible_distribution }}.yml"
 
-- name: Stop master node
-  service: name=mariadb state=stopped
-  when: inventory_hostname == groups['mariadb_cluster'][0]
-
-- name: Start Galera cluster
-  shell: >
-    galera_new_cluster
-  when: inventory_hostname == groups['mariadb_cluster'][0]
-
-- name: Start the other MariaDB Galera cluster nodes
-  service: name=mariadb state=restarted
-  when: inventory_hostname != groups['mariadb_cluster'][0]
+- name: include distribution specific install
+  include: "{{ ansible_distribution }}.yml"

@@ -1,0 +1,6 @@
+---
+conf_bind_addr: 0.0.0.0
+conf_binlog_format: row
+conf_default_storage_engine: InnoDB
+conf_innodb_autoinc_lock_mode: 2
+conf_innodb_log_file_size: 48M

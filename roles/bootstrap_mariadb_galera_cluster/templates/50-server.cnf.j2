@@ -1,18 +1,18 @@
 # {{ ansible_managed }}
 
 [mariadb]
-pid-file=/run/mysqld/mysqld.pid
-socket= /run/mysqld/mysqld.sock
-bind-address=0.0.0.0
-log_error=mariadb-test.err
+pid-file={{ conf_pid_file }}
+socket={{ conf_socket_file }}
+bind-address={{ conf_bind_addr }}
+log_error={{ conf_log_err_file }}
 
 wsrep_on=ON
-wsrep_provider=/usr/lib/galera/libgalera_smm.so
+wsrep_provider={{ conf_wsrep_provider }}
 wsrep_cluster_address ="gcomm://{{ groups['mariadb_cluster'] | map('extract', hostvars, ['ansible_host']) | list | join(',') }}"
-wsrep_cluster_name={{ galera_wsrep_cluster_name }}
+wsrep_cluster_name={{ conf_wsrep_cluster_name }}
 wsrep_node_name={{ ansible_hostname }}
 wsrep_node_address={{ hostvars[inventory_hostname]['ansible_host'] }}
-binlog_format=row
-default_storage_engine=InnoDB
-innodb_autoinc_lock_mode=2
-innodb_log_file_size=48M
+binlog_format={{ conf_binlog_format }}
+default_storage_engine={{ conf_default_storage_engine }}
+innodb_autoinc_lock_mode={{ conf_innodb_autoinc_lock_mode }}
+innodb_log_file_size={{ conf_innodb_log_file_size }}
