@@ -1,0 +1,13 @@
+---
+- hosts: mariadb_cluster
+  become: yes
+  roles:
+  - mariadb_install
+
+- hosts: mariadb_cluster
+  become: yes
+  gather_facts: True
+  roles:
+  - bootstrap_mariadb_galera_cluster
+  
+    

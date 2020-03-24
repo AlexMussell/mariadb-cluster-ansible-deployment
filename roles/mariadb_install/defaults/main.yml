@@ -6,6 +6,3 @@ mysql_root_username: root
 mysql_root_password: root
 mysql_user_username: root
 mysql_user_password: root
-
-
-mysql_root_password_update: false

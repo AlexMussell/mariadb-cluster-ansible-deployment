@@ -8,6 +8,20 @@
     state: present
   when: mysql_user_username != mysql_root_username
 
+# https://github.com/geerlingguy/ansible-role-mysql/blob/master/tasks/secure-installation.yml
+- name: Get list of hosts for the anonymous user.
+  command: mysql -NBe 'SELECT Host FROM mysql.user WHERE User = ""'
+  register: mysql_anonymous_hosts
+  changed_when: false
+  check_mode: false
+
+- name: Remove anonymous MySQL users.
+  mysql_user:
+    name: ""
+    host: "{{ item }}"
+    state: absent
+  with_items: "{{ mysql_anonymous_hosts.stdout_lines|default([]) }}"
+
 - name: Disallow root login remotely
   command: 'mysql -NBe "{{ item }}"'
   with_items:
@@ -44,16 +58,3 @@
     - ::1
   when: root_pwd_check.rc == 0
 
-# https://github.com/geerlingguy/ansible-role-mysql/blob/master/tasks/secure-installation.yml
-# - name: Get list of hosts for the anonymous user.
-#   command: mysql -NBe 'SELECT Host FROM mysql.user WHERE User = ""'
-#   register: mysql_anonymous_hosts
-#   changed_when: false
-#   check_mode: false
-
-# - name: Remove anonymous MySQL users.
-#   mysql_user:
-#     name: ""
-#     host: "{{ item }}"
-#     state: absent
-#   with_items: "{{ mysql_anonymous_hosts.stdout_lines|default([]) }}"

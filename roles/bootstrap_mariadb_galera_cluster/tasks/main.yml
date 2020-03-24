@@ -2,7 +2,7 @@
 - name: Copy config to all nodes
   template:
     src: 50-server.cnf.j2
-    dest: /etc/mysql/my.cnf
+    dest: /etc/mysql/mariadb.conf.d/50-server.cnf
 
 - name: Stop master node
   service: name=mariadb state=stopped

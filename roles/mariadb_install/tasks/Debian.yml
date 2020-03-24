@@ -24,6 +24,11 @@
   with_items:
     - dirmngr
 
+- name: Ensure setuptools is installed
+  apt: "name={{ item }} state=present"
+  with_items:
+    - python-setuptools
+
 - name: Add MariaDB apt key by id from a keyserver
   apt_key:
     keyserver: keyserver.ubuntu.com
@@ -44,10 +49,12 @@
     - galera-4
 
 - name: Install Python3 package manager for PyMySQL
-  apt: name=python3-pip state=present
+  apt: name=python-pip update_cache=yes state=present
 
 - name: Install the Python package required for ansible MySQL
-  pip: name=pymysql
+  pip: "name={{ item }} state=present"
+  with_items:
+    - pymysql
 
 - debug: msg="trigger mariadb start"
   notify: start mariadb
