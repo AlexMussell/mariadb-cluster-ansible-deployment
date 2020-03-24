@@ -40,6 +40,8 @@
   apt: "name={{ item }} state=present"
   with_items:
     - mariadb-server
+    - mariadb-client
+    - galera-4
 
 - name: Install Python3 package manager for PyMySQL
   apt: name=python3-pip state=present

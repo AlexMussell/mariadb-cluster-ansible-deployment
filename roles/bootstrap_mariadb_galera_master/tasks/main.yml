@@ -7,7 +7,7 @@
 - name: Copy config to all nodes
   template:
     src: 50-server.cnf.j2
-    dest: /etc/mysql/mariadb.conf.d/50-server.cnf
+    dest: /etc/mysql/my.cnf
 
 # - name: Start Galera cluster
 #   shell: >

@@ -1,8 +1,8 @@
 ---
-- hosts: mariadb_cluster
-  become: yes
-  roles:
-  - mariadb_install
+# - hosts: mariadb_cluster
+#   become: yes
+#   roles:
+#   - mariadb_install
 
 - hosts: mariadb_cluster
   become: yes

@@ -1,13 +1,14 @@
 # {{ ansible_managed }}
 
-[mysqld]
-user            = root
-pid-file        = /run/mysqld/mysqld.pid
-socket          = /run/mysqld/mysqld.sock
+[mariadb]
+pid-file=/run/mysqld/mysqld.pid
+socket= /run/mysqld/mysqld.sock
 bind-address=0.0.0.0
+log_error=mariadb-test.err
+
 wsrep_on=ON
-wsrep_provider=/usr/lib64/galera/libgalera_smm.so
-wsrep_cluster_address = gcomm://{{ groups['mariadb_cluster'] | map('extract', hostvars, ['ansible_host']) | list | join(',') }}
+wsrep_provider=/usr/lib/galera/libgalera_smm.so
+wsrep_cluster_address=gcomm://{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] | join(',') }}
 wsrep_cluster_name={{ galera_wsrep_cluster_name }}
 wsrep_node_name={{ ansible_hostname }}
 wsrep_node_address={{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}
@@ -15,15 +16,3 @@ binlog_format=row
 default_storage_engine=InnoDB
 innodb_autoinc_lock_mode=2
 innodb_log_file_size=48M
-
-
-# EXAMPLE OUTPUT
-# [mariadb]
-# wsrep_on=ON
-# wsrep_provider=/usr/lib/galera/libgalera_smm.so
-# wsrep_cluster_address=gcomm://192.168.121.235,192.168.121.153,192.168.121.154
-# binlog_format=row
-# default_storage_engine=InnoDB
-# innodb_autoinc_lock_mode=2
-# bind-address=0.0.0.0
-# wsrep_cluster_name="galera_cluster"
