@@ -8,10 +8,10 @@ log_error=mariadb-test.err
 
 wsrep_on=ON
 wsrep_provider=/usr/lib/galera/libgalera_smm.so
-wsrep_cluster_address=gcomm://{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] | join(',') }}
+wsrep_cluster_address ="gcomm://{{ groups['mariadb_cluster'] | map('extract', hostvars, ['ansible_host']) | list | join(',') }}"
 wsrep_cluster_name={{ galera_wsrep_cluster_name }}
 wsrep_node_name={{ ansible_hostname }}
-wsrep_node_address={{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}
+wsrep_node_address={{ hostvars[inventory_hostname]['ansible_host'] }}
 binlog_format=row
 default_storage_engine=InnoDB
 innodb_autoinc_lock_mode=2
