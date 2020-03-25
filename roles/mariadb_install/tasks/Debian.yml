@@ -48,7 +48,7 @@
     - mariadb-client
     - galera-4
 
-- name: Install Python3 package manager for PyMySQL
+- name: Install Python package manager for PyMySQL
   apt: name=python-pip update_cache=yes state=present
 
 - name: Install the Python package required for ansible MySQL
