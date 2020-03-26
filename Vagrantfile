@@ -5,7 +5,7 @@ ENV['VAGRANT_DEFAULT_PROVIDER'] = 'libvirt'
 
 # TESTED: debian/stretch64, centos/7 
 
-CLUSTER_SIZE = 3
+CLUSTER_SIZE = 1
 
 Vagrant.configure("2") do |config|
 
